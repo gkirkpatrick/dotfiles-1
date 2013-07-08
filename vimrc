@@ -112,6 +112,15 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
+""""""""""""""
+"Code Folding"
+""""""""""""""
+set foldmethod=indent
+set foldnestmax=3
+set foldlevel=99
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR SCHEME
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
