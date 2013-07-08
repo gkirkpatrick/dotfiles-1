@@ -2,13 +2,10 @@ syntax enable                    " Turn on Syntax highlighting
 
 " auto indenting
 set et
-set sw=2                         " shift width is two, yes two
+set sw=4                         " shift width is two, yes two
 set softtabstop=4                " two!
 set expandtab                    " all tabs are actually spaces
-set nosmarttab
 set smartindent
-set foldmethod=indent
-set foldlevel=99
 
 
 " ----------------------------------------------------------------------------
@@ -124,7 +121,9 @@ autocmd BufWinEnter *.* silent loadview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR SCHEME
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark
-set t_Co=256
-let g:solarized_termcolors=256
-c
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+colorscheme solarized
