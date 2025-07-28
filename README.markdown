@@ -6,6 +6,7 @@ I used ryanb's dotfiles (https://github.com/ryanb/dotfiles) for inspiration in c
 ## Installation
 - `git clone https://github.com/gkirkpatrick/dotfiles-1.git ~/.dotfiles`
 - `cd ~/.dotfiles`
+- `sudo apt install rake`
 - `rake install`
 
 ## Environment
