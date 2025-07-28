@@ -4,7 +4,7 @@
 I used ryanb's dotfiles (https://github.com/ryanb/dotfiles) for inspiration in creating my dotfiles. In fact, I lifted his Rakefile line for line.
 
 ## Installation
-- `git clone git://github.com/patjenk/dotfiles ~/.dotfiles`
+- `git clone git://github.com/gkirkpatrick/dotfiles-1 ~/.dotfiles`
 - `cd ~/.dotfiles`
 - `rake install`
 
