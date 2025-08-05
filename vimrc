@@ -11,6 +11,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'dense-analysis/ale'
+let g:ale_linters = {
+  \ 'python': ['pyflakes'],
+\}
 call plug#end()
 
 " auto indenting
