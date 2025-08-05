@@ -15,5 +15,6 @@ I do most of my work in Linux terminals. I use bash most of the time but I have 
 ## Dependencies
 - git
 - rake
+- curl
 - host
 - whois
