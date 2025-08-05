@@ -24,17 +24,20 @@ endif
 if !exists("b:did_python_init")
     let b:did_python_init = 0
 
-    if !has('python')
-        echoerr "Error: the pyflakes.vim plugin requires Vim to be compiled with +python"
+    if has('python3')
+        let s:pycmd = 'python3'
+    elseif has('python')
+        let s:pycmd = 'python'
+    else
+        echoerr "Error: the pyflakes.vim plugin requires Vim to be compiled with +python or +python3"
         finish
     endif
 
-if !exists('g:pyflakes_use_quickfix')
-    let g:pyflakes_use_quickfix = 1
-endif
+    if !exists('g:pyflakes_use_quickfix')
+        let g:pyflakes_use_quickfix = 1
+    endif
 
-
-    python << EOF
+    execute s:pycmd . ' << EOF'
 import vim
 import os.path
 import sys
@@ -232,7 +235,7 @@ if !exists("*s:RunPyflakes")
         let b:qf_list = []
         let b:qf_window_count = -1
         
-        python << EOF
+        execute s:pycmd . ' << EOF'
 for w in check(vim.current.buffer):
     vim.command('let s:matchDict = {}')
     vim.command("let s:matchDict['lineNum'] = " + str(w.lineno))
