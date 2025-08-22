@@ -1,9 +1,16 @@
 #!/usr/bin/env sh
 set -eu
 
-DOTFILES_DIR="${DOTFILES_DIR:-$PWD}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+DOTFILES_DIR="${DOTFILES_DIR:-$SCRIPT_DIR}"
 TARGET="${TARGET:-$HOME}"
 BACKUP="${DOTFILES_BACKUP:-"$HOME/.dotfiles_backup_$(date +%Y%m%d%H%M%S)"}"
+
+# BSD ln on macOS behaves slightly differently than GNU ln. Handle it here.
+LN_OPTS="-snf"
+if [ "$(uname)" = "Darwin" ]; then
+  LN_OPTS="-sfn"
+fi
 
 mkdir -p "$BACKUP"
 
@@ -12,11 +19,11 @@ link() {
   dest="$2"
   mkdir -p "$(dirname "$dest")"
   if [ -L "$dest" ] || [ ! -e "$dest" ]; then
-    ln -snf "$src" "$dest"
+    ln $LN_OPTS "$src" "$dest"
   else
     echo "Backing up $dest -> $BACKUP"
     mv "$dest" "$BACKUP/"
-    ln -snf "$src" "$dest"
+    ln $LN_OPTS "$src" "$dest"
   fi
 }
 
