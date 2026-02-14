@@ -27,7 +27,7 @@ link() {
   fi
 }
 
-IGNORE="install.sh README.markdown"
+IGNORE="install.sh README.markdown claude"
 
 for path in "$DOTFILES_DIR"/*; do
   name=$(basename "$path")
@@ -36,5 +36,14 @@ for path in "$DOTFILES_DIR"/*; do
   esac
   link "$path" "$TARGET/.$name"
 done
+
+# Install Claude Code config files into ~/.claude/
+if [ -d "$DOTFILES_DIR/claude" ]; then
+  mkdir -p "$TARGET/.claude"
+  for path in "$DOTFILES_DIR/claude"/*; do
+    name=$(basename "$path")
+    link "$path" "$TARGET/.claude/$name"
+  done
+fi
 
 echo "Done. Backups (if any) in $BACKUP"
